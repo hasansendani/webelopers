@@ -29,6 +29,12 @@ ALLOWED_HOSTS = ['*']
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'omid.mesgarha@gmail.com'
+EMAIL_HOST_PASSWORD = '0390775594131313'
+
 # Application definition
 
 INSTALLED_APPS = [
