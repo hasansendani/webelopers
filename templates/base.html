@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html dir="rtl">
+<head>
+    <meta charset="utf-8" />
+    <title>{% block title %}{% endblock %}</title>
+    <style>
+        ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background-color: #333;
+        }
+
+        li {
+            float: right;
+        }
+
+        li a {
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+        }
+
+        li a:hover:not(.active) {
+            background-color: #111;
+        }
+
+        .active {
+            background-color: #4CAF50;
+        }
+    </style>
+</head>
+<body dir="rtl" id="id_navbar">
+
+<ul dir="rtl"><li id="id_navbar_home" dir="rtl"><a class="active" href="{%url 'main_page'%}">خانه</a></li>
+    <li id="id_navbar_signup" dir="rtl"><a href=" {% url 'register' %}">ثبت نام </a></li>
+    <li dir="rtl">
+        {% if user.is_authenticated %}
+        <a href="#" , id="id_navbar_logout">خروج</a>
+        {% else %}
+        <a href="#" , id="id_navbar_login">ورود</a>
+        {%endif%}
+    </li>
+    <li id="id_navbar_contact_us" dir="rtl"><a href="#">تماس با ما</a></li>
+</ul>
+
+{% if form.errors %}
+    <p>نام کاربری یا رمز عبور غلط است</p>
+    {%endif%}
+
+{% block content %}
+{% endblock%}
+
+</body>
+</html>
