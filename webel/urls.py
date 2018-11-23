@@ -25,4 +25,5 @@ urlpatterns = [
     path('contact_us', views.email_view, name='contact_us_page'),
     path('success_email', views.success_view, name= 'success'),
     path('login/', auth_views.LoginView.as_view(template_name='login.html'), name="login"),
+
 ]

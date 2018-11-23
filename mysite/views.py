@@ -30,6 +30,7 @@ def register(request):
         form = SignUpForm()
     return render(request, 'registerPage.html', {'form': form})
 
+
 def email_view(request):
     if request.method == 'GET':
         form = ContactForm()
