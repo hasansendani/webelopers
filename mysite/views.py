@@ -1,10 +1,14 @@
 from django.contrib.auth import authenticate, login
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
-from collection.forms import ContactForm
-
+from django import forms
+from .forms import ContactForm
 # Create your views here.
 from mysite.forms import SignUpForm
+
+from django.core.mail import send_mail, BadHeaderError
+from django.http import HttpResponse, HttpResponseRedirect
+from django.shortcuts import render, redirect
 
 
 def mainPage(request):
@@ -26,9 +30,22 @@ def register(request):
     return render(request, 'registerPage.html', {'form': form})
 
 
-def contact(request):
-    form_class = ContactForm
+def email_view(request):
+    if request.method == 'GET':
+        form = ContactForm()
+    else:
+        form = ContactForm(request.POST)
+        if form.is_valid():
+            title = form.cleaned_data['title']
+            email = form.cleaned_data['email']
+            text = form.cleaned_data['text']
+            try:
+                send_mail(title, text, email, ['admin@example.com'])
+            except BadHeaderError:
+                return HttpResponse('Invalid header found.')
+            return redirect('success')
+    return render(request, "contact_us_page.html", {'form': form})
 
-    return render(request, 'contact_us_page.html', {
-        'form': form_class,
-    })
+
+def success_view(request):
+    return render(request, 'success.html')

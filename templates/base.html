@@ -44,7 +44,7 @@
         <a href="#" , id="id_navbar_login">ورود</a>
         {%endif%}
     </li>
-    <li id="id_navbar_contact_us" dir="rtl"><a href="#">تماس با ما</a></li>
+    <li id="id_navbar_contact_us" dir="rtl"><a href="{% url 'contact_us_page' %}">تماس با ما</a></li>
 </ul>
 
 {% if form.errors %}
