@@ -3,7 +3,7 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 
 # Create your views here.
-from mysite.forms import SignUpForm, LoginForm
+from mysite.forms import SignUpForm
 
 
 def mainPage(request):
@@ -38,3 +38,11 @@ def login(request):
     else:
         form = LoginForm()
     return render(request, 'loginPage.html', {'form': form})
+
+
+def contact(request):
+    form_class = ContactForm
+
+    return render(request, 'contact_us_page.html', {
+        'form': form_class,
+    })
