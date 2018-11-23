@@ -1,6 +1,7 @@
 from django.contrib.auth import authenticate, login
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
+from collection.forms import ContactForm
 
 # Create your views here.
 from mysite.forms import SignUpForm
@@ -23,3 +24,11 @@ def register(request):
     else:
         form = SignUpForm()
     return render(request, 'registerPage.html', {'form': form})
+
+
+def contact(request):
+    form_class = ContactForm
+
+    return render(request, 'contact_us_page.html', {
+        'form': form_class,
+    })
