@@ -3,7 +3,7 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 
 # Create your views here.
-from mysite.forms import SignUpForm
+from mysite.forms import SignUpForm, LoginForm
 
 
 def mainPage(request):
@@ -23,3 +23,18 @@ def register(request):
     else:
         form = SignUpForm()
     return render(request, 'registerPage.html', {'form': form})
+
+def login(request):
+    if request.method == "POST":
+        form = LoginForm(request.POST)
+        #if form.is_valid():
+        print("salam")
+        #form.save()
+        username = form.cleaned_data.get('username')
+        raw_password = form.cleaned_data.get('password1')
+        user = authenticate(username=username, password=raw_password)
+        login(request, user)
+        return redirect('main_page')
+    else:
+        form = LoginForm()
+    return render(request, 'loginPage.html', {'form': form})
