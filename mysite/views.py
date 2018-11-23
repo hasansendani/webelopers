@@ -10,6 +10,17 @@ from mysite.forms import SignUpForm
 from django.core.mail import send_mail, BadHeaderError
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, redirect
+from django.core.mail import send_mail
+
+
+def send_email(subject, text):
+    send_mail(
+        subject,
+        text,
+        'omid.mesgarha@gmial.com',
+        ['hasansendani1@gmail.com'],
+        fail_silently=False,
+    )
 
 
 def mainPage(request):
@@ -41,7 +52,7 @@ def email_view(request):
             email = form.cleaned_data['email']
             text = form.cleaned_data['text']
             try:
-                send_mail(title, text, email, ['admin@example.com'])
+                send_email(title, str(email + '\n') + str(text))
             except BadHeaderError:
                 return HttpResponse('Invalid header found.')
             return redirect('success')
