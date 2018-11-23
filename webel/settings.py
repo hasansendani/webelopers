@@ -25,8 +25,11 @@ SECRET_KEY = '_$*l+smg4sd-eup@^9^(lk6y9nt6uwmihpwg_wpu&*c8=(yh(2'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+LOGIN_REDIRECT_URL = '/'
 
 # Application definition
 
@@ -54,6 +57,7 @@ ROOT_URLCONF = 'webel.urls'
 
 TEMPLATES = [
     {
+
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [os.path.join(BASE_DIR, 'templates')]
         ,
